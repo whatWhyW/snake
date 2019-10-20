@@ -90,6 +90,7 @@ Game.prototype.gameOver = function() {
 	this.flag = false;
 	// 清除定时器
 	clearInterval(this.timer);
+	alert('游戏结束，共吃到' + index + '个糖果！')
 }
 
 // 检测蛇是否撞墙
@@ -97,7 +98,7 @@ Game.prototype.checkMap = function() {
 	var head = this.snake.arr[this.snake.arr.length - 1];
 	if (head.row < 0 || head.row >= this.map.row || head.col < 0 || head.col >= this.map.col) {
 		// 说明撞墙了
-		alert("撞墙了");
+		// alert("撞墙了");
 		// 结束游戏
 		this.gameOver();
 
@@ -105,12 +106,11 @@ Game.prototype.checkMap = function() {
 }
 
 // 检测是否吃到食物
-Game.prototype.checkFood = function(index) {
+Game.prototype.checkFood = function() {
 	var head = this.snake.arr[this.snake.arr.length - 1];
 	var food = this.food;
 	if (head.row === food.row && head.col === food.col) {
 		index++;
-		console.log(index);
 		this.snake.growUp();
 		this.resetFood();
 	}
@@ -136,7 +136,7 @@ Game.prototype.checkSnake = function() {
 	for (var i = 0; i < this.snake.arr.length - 1; i++) {
 		var one = this.snake.arr[i];
 		if (head.row === one.row && head.col === one.col) {
-			alert("蛇吃到自己了");
+			// alert("蛇吃到自己了");
 			this.gameOver();
 		}
 	}
